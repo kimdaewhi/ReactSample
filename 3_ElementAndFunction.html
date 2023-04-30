@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <!-- React CDN import -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        
+        <!-- Babel CDN import -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        <script type="text/babel">    
+            
+            const rootElement = document.getElementById("root")
+            const paint = (title, desc) => (
+                <>
+                    <h1>{title}</h1>
+                    <h3>{desc}</h3>
+                </>
+            );
+
+            const Paint = ({ title, desc, children }) => { 
+                return(
+                    <>
+                        <h1>{title}</h1>
+                        <h3>{desc}</h3>
+                        {children}
+                    </> 
+                ); 
+            };
+
+            // const Paint = ({ title, desc }) => { 
+            //     return(
+            //         <>
+            //             <h1 className={desc}>{title}</h1>
+            //             <h3></h3>
+            //         </> 
+            //     ); 
+            // };
+
+            const AAA = ({AParam}) => <h3>{AParam}</h3>;
+            
+            
+            // React.Fragment :  
+            const element = (
+                <>
+                    <Paint title="Good" desc="good">
+                        <span>Hi</span>
+                        <AAA AParam="yhhh"/>
+                    </Paint>
+                    <Paint title="Bad" desc="bad">
+                        <span>Bye</span>
+                    </Paint>
+                    
+                    {paint("Nothing", "nothing")}
+                    {paint("React ", "react")}
+                </>
+            );
+
+            ReactDOM.render(element, rootElement);
+                
+        </script>
+
+        <div id="root">
+        </div>
+    </body>
+</html>
+
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <!-- React CDN import -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        
+        <!-- Babel CDN import -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        <script type="text/babel">    
+            // const rootElement = document.getElementById("root");
+            // const text = "Hello React!! >.<";
+            // const titleClassName = "title";
+
+            // const customH1 = <h1 className={titleClassName}>{text}</h1>;
+            // const props = { className : titleClassName, children : text };
+
+            // spread연산자
+            // const element = <h1 {...props} />;
+            // ReactDOM.render(element, rootElement);
+            
+            const rootElement = document.getElementById("root")
+            // const element = (
+            //     <div    className = "box" 
+            //             children = { 
+            //             [   React.createElement("h1", null, "Hi"),
+            //                 React.createElement("h3", null, "Bye"),
+            //                 React.createElement("h5", null, "Children")
+            //             ]}
+            //     />
+            // );
+
+            // rootElement 하위에 바로 Child 찍는법.. Dog신기
+            // const element = (
+            //     <React.Fragment>
+            //         <h1 className="h1">Hi</h1>
+            //         <h3 className="h3">Bye</h3>
+            //         <h5 className="h5">Children</h5>
+            //     </React.Fragment>
+            // );
+
+            const element = (
+                <>
+                    <h1 className="h1">Hi</h1>
+                    <h3 className="h3">Bye</h3>
+                    <h5 className="h5">Children</h5>
+                </>
+            );
+            console.log(element);
+
+            ReactDOM.render(element, rootElement);
+                
+        </script>
+
+        <div id="root">
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <!-- React CDN import -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        
+        <!-- Babel CDN import -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        <script type="text/babel">    
+            
+            const rootElement = document.getElementById("root")
+            const paint = (title, desc) => (
+                <>
+                    <h1>{title}</h1>
+                    <h3>{desc}</h3>
+                </>
+            );
+
+            // javascript 문법
+            // ㅈㄴ헷갈리네;;;; 함수 시작은 js문법, return은 JSX 문법이다... 후... 강의하는 사람이 말을 너무 못해...
+            const TextExam1 = ({ text }) => { 
+                    // 대문자일때 = h1, 소문자일때 = h3
+                    if(text.charAt(0) === text.charAt(0).toUpperCase())
+                    {
+                        return  <h1>    {/* JSX문법 */}
+                                {text}  {/* js문법 */}
+                                </h1>;  {/* JSX문법 */}
+                    }
+                    else
+                    {
+                        return <h3>{text}</h3>;
+                    }
+            };
+
+            // 얘도 js + JSX 문법 혼용(Interpolation)
+            function NumberExam1({ number, selected }) {
+                // return number % 2 === 0 ? <h1>{number}</h1> : <h3>{number}</h3>
+                return selected ? <h1>{number}</h1> : <h3>{number}</h3>
+            }
+
+            const element = (
+                <>
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => (
+                        <NumberExam1 
+                            number={number} 
+                            key={number}    // map 사용 시 key warning 제거
+                            selected={number % 2 === 0} />
+                    ))}
+
+                    {/* 
+                    <TextExam1 text="abcd" />
+                    <TextExam1 text="TEXT" />
+
+                    <NumberExam1 number={1} />
+                    <NumberExam1 number={2} selected={true} />
+                    <NumberExam1 number={3} />
+                    <NumberExam1 number={4} />
+                    */}
+
+                </>
+            )
+
+            console.log(element);
+
+            ReactDOM.render(element, rootElement);
+        </script>
+
+        <style>
+            .title {
+                color : "red"
+            }
+        </style>
+
+        <div id="root">
+        </div>
+    </body>
+</html>
+
+

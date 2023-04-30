@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- React CDN import -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" ></script>
+
+    <!-- Babel CDN import -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const elementV = document.createElement("h1");
+      elementV.textContext = "Hello javascript!";
+
+      // 패스트캠퍼스에서 말한 방법대로 하면 안됨;; ㅡㅡ;;
+      // React18 버전부터는 ReactDOM.render 대신 ReactDOM.createRoot를 사용해야함.
+      document.addEventListener("DOMContentLoaded", function () {
+        const rootElement = document.getElementById("root");
+        // const element = React.createElement("h1", null, "Hello React!");
+
+        // const element = React.createElement("h1", {
+        //   className: "title",
+        //   children: ["Hello React! ", "It's me! ", "good "]
+        // });
+
+        const element = <h1 className="title">Hello React!!</h1>;
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(element);
+      });
+    </script>
+
+    <div id="root"></div>
+  </body>
+</html>
