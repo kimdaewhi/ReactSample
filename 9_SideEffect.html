@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+
+        <!-- React CDN import -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- Babel CDN import -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+        <script type="text/babel">
+            const rootElement = document.getElementById("root");
+
+            // 왜 로드 안되냐...
+            const App = () => {
+                {/* local Storage에 저장된 값을 가져온다. */}
+                // const [keyword, setKeyword] = React.useState(window.localStorage.getItem("keyword"));
+                const [keyword, setKeyword] = React.useState(() => {
+                    // console.log("Init");
+                    window.localStorage.getItem("keyword") === null ? "" : window.localStorage.getItem("keyword");
+                });
+                const [result, setResult] = React.useState("");
+                const [typing, setTyping] = React.useState(false);
+                
+                // console.log("render");
+
+                React.useEffect(() => {
+                    // console.log("Effect");
+                    window.localStorage.setItem("keyword", keyword);
+                }, [keyword, typing]);
+                
+
+                function handleInputChange() {
+                    // window.localStorage.setItem("keyword", event.target.value);
+                    setKeyword(event.target.value);
+                    setTyping(true);
+                }
+
+                function handleBtnClick() {
+                    setTyping(false);
+                    setResult(`We find results of ${keyword}`);
+                }
+
+                return (
+                    <>
+                        { /*요기서 keyword값을 로드해줌*/ }
+                        <input onChange={ handleInputChange } value={ keyword } />
+                        <button onClick={ handleBtnClick }>search</button>
+                        <p>{ typing ? `Looking for ${ keyword }...` : result }</p>
+                    </>
+                );
+            };
+
+            ReactDOM.render(<App />, rootElement);
+        </script>
+
+
+    </body>
+</html>
+
+
