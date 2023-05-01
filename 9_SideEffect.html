@@ -14,27 +14,25 @@
         <script type="text/babel">
             const rootElement = document.getElementById("root");
 
-            // 왜 로드 안되냐...
+            // 컴포넌트 Side Effect 다루기
+            // React.useEffect()에 대해서 알아보기. useState 할 때 필요시 꼭 return 해주자
             const App = () => {
                 {/* local Storage에 저장된 값을 가져온다. */}
-                // const [keyword, setKeyword] = React.useState(window.localStorage.getItem("keyword"));
-                const [keyword, setKeyword] = React.useState(() => {
-                    // console.log("Init");
-                    window.localStorage.getItem("keyword") === null ? "" : window.localStorage.getItem("keyword");
+                const [keyword, setKeyword] = React.useState( () => {
+                    console.log("init");
+                    return window.localStorage.getItem("keyword");
                 });
                 const [result, setResult] = React.useState("");
                 const [typing, setTyping] = React.useState(false);
-                
-                // console.log("render");
+
+                console.log("render");
 
                 React.useEffect(() => {
-                    // console.log("Effect");
+                    console.log("effect");
                     window.localStorage.setItem("keyword", keyword);
-                }, [keyword, typing]);
-                
+                }, [keyword]);
 
                 function handleInputChange() {
-                    // window.localStorage.setItem("keyword", event.target.value);
                     setKeyword(event.target.value);
                     setTyping(true);
                 }
