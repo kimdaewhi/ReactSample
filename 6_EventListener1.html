@@ -43,6 +43,10 @@
                 <button onClick={ handleClick } onMouseOut={ handleMouseOut } >Press</button>
             )
             ReactDOM.render(element, rootElement);
+
+            // 기존 방식의 구현(함수 내부에 직접 구현)
+            // const element2 = <button onClick={ () => alert("pressed btn2") } onMouseOut={ () => alert("bye btn2") } >Press22</button>
+            // ReactDOM.render(element2, rootElement);
         </script>
 
 
