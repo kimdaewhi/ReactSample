@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+
+        <!-- React CDN import -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- Babel CDN import -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+        <script type="text/babel">
+            /* ※ 중요
+             * useEffect 호출 시점 확인
+             * --------------------------
+             * 1. Parent render
+             * 2. Children render
+             * 3. Children useEffect >> 얘부터 먼저 실행함 ★★★★★
+             * 4. Parent useEffect 
+
+             * @@ 좀 더 세부적으로 보자면... useEffect 내부에서의 흐름은
+             * return 하면서 Clean Up을 먼저 실행(?), 후에 useEffect에서 구현한 코드 실행(?)
+             */
+            const rootElement = document.getElementById("root");
+
+            const Child = () => {
+                console.log("       Child render start");
+
+                const [text, setText] = React.useState(() => {
+                    console.log("       Child useState");
+                    return "";
+                });
+
+                React.useEffect(() => {
+                    console.log("       Child useEffect, no deps");
+                    return () => {
+                        console.log("       Child useEffect [Clean Up], no deps");
+                    };
+                });
+
+                React.useEffect(() => {
+                    console.log("       Child useEffect, empty deps");
+                    return () => {
+                        console.log("       Child useEffect [Clean Up], empty deps");
+                    };
+                }, []);
+
+                React.useEffect(() => {
+                    console.log("       Child useEffect, [text]");
+                    return () => {
+                        console.log("       Child useEffect [Clean Up], [text]");
+                    };
+                }, [text]);
+
+                function handleChange(event) {
+                    setText(event.target.value);
+                }
+
+                const element = (
+                    <>
+                        <input onChange={handleChange}/>
+                        <p>{text}</p>
+                    </>
+                );
+                console.log("       Child render end");
+
+                return element;
+            };
+
+
+            const App = () => {
+                console.log("APP render start");
+                const [show, setShow] = React.useState(() => {
+                    console.log("APP useState");
+                    return false;
+                });;
+
+                React.useEffect(() => {
+                    console.log("APP useEffect, no deps");
+                    return () => {
+                        console.log("APP useEffect [Clean Up], no deps");
+                    };
+                });
+
+                // deps가 없으면 render 될 때만 반응(생성자...??)
+                React.useEffect(() => {
+                    console.log("APP useEffect, empty deps");
+                    return () => {
+                        console.log("APP useEffect [Clean Up], empty deps");
+                    };
+                }, []);
+
+                React.useEffect(() => {
+                    console.log("APP useEffect, [show]");
+                    return () => {
+                        console.log("APP useEffect [Clean Up], [show]");
+                    };
+                }, [show]);
+
+                function handleClick() {
+                    // 다음과 같은 코드로 가능함. (useState에서 반환한 이전 값.)
+                    setShow(prev => !prev)
+                }
+                
+                console.log("APP render end")
+                return  (
+                        <>
+                            <button onClick={handleClick}>Search</button>
+                            {show ? <Child/> : null }
+                        </>
+                    );
+                };
+
+            ReactDOM.render(<App />, rootElement);
+        </script>
+
+
+    </body>
+</html>
+
+
