@@ -27,6 +27,8 @@
 
                 console.log("render");
 
+                // useEffect 사용 시 2번째 인자(dependency array)를 아무것도 주지 않으면 모든 변화에 다 반응한다.
+                // 파라미터 입력하면 해당 파라미터가 변경될 때만 동작한다.
                 React.useEffect(() => {
                     console.log("effect");
                     window.localStorage.setItem("keyword", keyword);
