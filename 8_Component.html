@@ -17,6 +17,7 @@
             // React.usetState...?? : 상태값을 관리해주는 Hook
             // Hook은 뭐지?
             const App = () => {
+                // 배열 비구조화 할당(?)
                 const [keyword, setKeyword] = React.useState("");
                 const [result, setResult] = React.useState("");
                 const [typing, setTyping] = React.useState(false);
@@ -26,7 +27,7 @@
                 // const keyword = keywordState[0];
                 // const setKeyword = keywordState[1];
 
-                function handleInputChange() {
+                function handleInputChange(event) {
                     setKeyword(event.target.value);
                     setTyping(true);
                 }
