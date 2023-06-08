@@ -154,3 +154,18 @@ Javascript / React 개발환경 세팅하기
 			React에서는 이러한 앨리먼트 재조정 과정을 자동으로 처리하기 때문에 개발자가 수동으로 처리할 필요가 없습니다. 
 			하지만 성능 최적화를 위해 shouldComponentUpdate() 메서드를 사용하여 앨리먼트 재조정 조건을 정의할 수 있습니다. 
 			이 메서드는 새로운 props 또는 state가 이전과 다를 때만 재조정을 수행하도록 지정할 수 있습니다.
+
+* Element / Component 
+	- https://ko.legacy.reactjs.org/docs/rendering-elements.html 참고
+	- Element
+		* 엘리먼트는 React 앱의 가장 작은 단위입니다.
+		* 엘리먼트는 화면에 표시할 내용을 기술합니다. -React 공식 문서-
+		* ※ 주의 - 엘리먼트는 컴포넌트의 "구성 요소"이다.
+		  >> ex. const element = <h1>Hello, world</h1>
+		  >> 즉 App의 가장 작은 구성 요소들을 의미
+
+	- Component
+		* JavaScript 함수와 유사한 기능.
+		* React App의 UI를 구성하는 최소 단위.
+		* 엘리먼트는 React 컴퍼넌트를 표현하는 JavaScript 객체.
+		* 엘리먼트의 집합.(재사용을 위해서 함수 형식으로 만듬)
