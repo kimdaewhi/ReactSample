@@ -84,19 +84,19 @@ Javascript / React 개발환경 세팅하기
 ============================================================================================================
 
 [React]
-* DOM (Document Object Model)이란?
+1. DOM (Document Object Model)이란?
 	- 문서를 논리 트리로 표현한다(?)
 
-* CDN(Content Delivery Network)
+2. CDN(Content Delivery Network)
 	- 웹에서 사용되는 다양한 컨텐츠(리소스)를 저장하여 제공하는 시스템
 	- unpkg 이용
 
-* createElement
+3. createElement
 
-* React : element 생성
+4. React : element 생성
   ReactDOM : appendChild와 같은 기능을 하는 render
 
-* React의 createElement() 함수
+5. React의 createElement() 함수
 	- Element 생성 기능
 	- Paramenter 중 2번째 인자에는 다양한 요소들을 넣을 수 있다.
 	- 예제코드
@@ -107,7 +107,7 @@ Javascript / React 개발환경 세팅하기
 					  children: ["Hello React! ", "It's me! ", "good "]....
 					});
 
-* JSX란?
+6. JSX란?
 	- 문자도 HTML도 아닌 Javascript 확장 문법
 	- Babel 이라는 js 컴파일러가 필요함. (https://babeljs.io/)
 	- JSX 연산자
@@ -125,13 +125,15 @@ Javascript / React 개발환경 세팅하기
 
 =================================================================================
 
-* Element 찍어내기
+7. Element 찍어내기
 	- 함수 생성 시 첫글자는 명시적으로 대문자로 생성해야 함
-	
-* Interpolation(인터폴레이션)
+
+
+8. Interpolation(인터폴레이션)
 	- 하나의 스크립트 파일에 안에서 여러가지 문법을 혼용해서 사용(ex. html + javascript + JSX)
-	
-* 리액트와 리랜더링(Rerendering)
+
+
+9. 리액트와 리랜더링(Rerendering)
 	- Vanilla JS : 변경으로 인한 Element 다시 그림
 	- React : 변경된 부분만 다시 그림
 	- 일반적인 Vanilla JS는 변경되는 부분의 상위(?) Element 또한 모두 변경하지만, React 변경된 Component만 그리게 됨.
@@ -155,7 +157,26 @@ Javascript / React 개발환경 세팅하기
 			하지만 성능 최적화를 위해 shouldComponentUpdate() 메서드를 사용하여 앨리먼트 재조정 조건을 정의할 수 있습니다. 
 			이 메서드는 새로운 props 또는 state가 이전과 다를 때만 재조정을 수행하도록 지정할 수 있습니다.
 
-* Element / Component 
+
+10. 이벤트 핸들러(Event Handler) 주요 내용
+	- 변수 선언 시 객체 리터럴 이용한 변수 선언 방식 : const state = { keyworkd: "", typing: false, result: ""};
+	- Object.assign() : 출처 객체들의 모든 열거 가능한 자체 속성을 복사해 대상 객체에 붙여넣습니다. 그 후 대상 객체를 반환합니다.(※ 객체 병합)
+		ex) const target = { a: 1, b: 2 };
+			const source = { b: 4, c: 5 };
+
+			const returnedTarget = Object.assign(target, source);
+
+			console.log(target);
+			// Expected output: Object { a: 1, b: 4, c: 5 }
+
+			console.log(returnedTarget === target);
+			// Expected output: true
+		>> 내용 추가 : target에 source 속성을 복사하여 붙여넣는다. 
+			parameter 1 : paste할 객체
+			parameter 2 : copy할 객체
+
+
+11. Element / Component 
 	- https://ko.legacy.reactjs.org/docs/rendering-elements.html 참고
 	- Element
 		* 엘리먼트는 React 앱의 가장 작은 단위입니다.
@@ -169,3 +190,44 @@ Javascript / React 개발환경 세팅하기
 		* React App의 UI를 구성하는 최소 단위.
 		* 엘리먼트는 React 컴퍼넌트를 표현하는 JavaScript 객체.
 		* 엘리먼트의 집합.(재사용을 위해서 함수 형식으로 만듬)
+
+
+12. SideEffect / Hook(useState, useEffect) 주요 개념
+	- event.target.value : 이벤트가 발생한 요소를 반환
+
+	- window.localStorage : setItem, getItem을 통해서 local Storage 데이터 이용 가능
+
+	- React.useState (★★★★★★★★★★)
+		* state라는 의미는 컴포넌트에서 동적인 값을 의미함.
+		* useState라는 함수를 이용해서 컴포넌트의 state를 동적으로 관리할 수 있음.
+		ex) const keyword = "";
+			function handleInputChange(event) {
+                    keyword = event.target.value;
+                }
+		  >> 이와 같은 방식으로 keyword의 값을 변경해주더라고 render를 호출하지 않으면 App 내의 엘리먼트는 변경되지 않음.
+		  >> useState를 이용하면 매번 render 함수를 호출하지 않아도 App 내에서 변경된 상태를 이용한 갱신 가능함.
+
+		ex2) const [keyword, setKeyword] = React.useState("");
+			 function handleInputChange(event) {
+                    setKeyword(event.target.value);
+                }
+
+		* React.useState는 arrow function으로도 표현 가능함
+
+	- React.useEffect (★★★★★★★★★★)
+		* 컴포넌트의 생명주기 Method 중 하나.
+			a. parameter1 : 실행할 함수
+			b. parameter2 : 의존성 배열(dependency array)
+
+		* parameter2 없이 호출하면 컴포넌트가 처음 마운트될 때만 useEffect Callback Method가 호출됨.
+		* parameter2를 지정해주면 지정한 상태나 property가 변경될 때마다 호출됨.
+		ex) React.useEffect(() => {
+				console.log("effect");
+				window.localStorage.setItem("keyword", keyword);
+			}, [keyword]);
+
+13. HookFlow 주요 개념
+	★ 컴포넌트 생명주기
+		a. 마운트(Mounting)
+		b. 업데이트(Updating)
+		c. 언마운트(Unmounting)
