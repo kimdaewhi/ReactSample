@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>      
+
+        <!-- React CDN import -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- Babel CDN import -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+        <script type="text/babel">
+            // 왜 구지 getElementById를 사용하지 않고, useRef라는 함수를 가지고 사용하나...??
+            // React는 기본적으로 Virtual DOM을 사용하기 때문에 직접 DOM 요소에 접근하는 것은 권장되지 않음(?)
+            const rootElement = document.getElementById("root");
+            const App = () => {
+                const inputRef = React.useRef();
+                const divRef = React.useRef();
+
+                React.useEffect(() => {
+                    // 1. document 직접 접근 방식
+                    // document.getElementById("input").focus();
+
+                    // 2. inputRef라는 Hook 사용
+                    inputRef.current.focus();
+
+                    setTimeout(() => {
+                        divRef.current.style.backgroundColor = "pink";
+                    }, 1000);
+                }, []);
+                
+                return (
+                    <>
+                        {/* 1. document 직접 접근 방식 */}
+                        {/*<input id="input"/>*/}
+
+                        {/* 2. Ref라는 Hook 사용 */}
+                        <input ref={inputRef} />
+                        <div ref={divRef}
+                             style={{ height: 100, width: 300, backgroundColor: "brown" }}>
+
+                        </div>
+                        
+                    </>
+                );
+            }
+
+            ReactDOM.render(<App />, document.getElementById("root"));
+        </script>
+
+
+    </body>
+</html>
+
+
