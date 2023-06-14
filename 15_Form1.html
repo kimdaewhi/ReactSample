@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>      
+
+        <!-- React CDN import -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- Babel CDN import -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+        <script type="text/babel">
+            const rootElement = document.getElementById("root");
+
+            // Exam 1.
+            /*
+            const App = () => {
+                const handleSubmit = (event) => {
+                    event.preventDefault();
+
+                    // console.dir : 지정된 js 객체의 속성에대한 대화형 목록을 표시합니다.(지정한 객체를 속성과 값들이 펼처진 형태로 출력됨.)
+                    console.dir(event.target);
+                    console.dir(event.target.elements);
+
+                    // 아래 2개의 alert은 모두 동일한 의미
+                    // alert("First Name : " + event.target["fname"].value + ", Last Name : " + event.target["lname"].value);
+                    alert("First Name : " + event.target.elements.fname.value + ", Last Name : " + event.target.elements.lname.value);
+                };
+
+                return (
+                    <>
+                        <form onSubmit={handleSubmit}>
+                            <label htmlFor="fname">First name:</label><br/>
+                            <input type="text" id="fname" name="fname" defaultValue="John"/><br/>
+                            <label htmlFor="lname">Last name:</label><br/>
+                            <input type="text" id="lname" name="lname" defaultValue="Doe"/><br/>
+                            <input type="submit" value="Submit"/>
+                        </form> 
+                    </>
+                );
+            }
+            */
+
+            // Exam 2.
+            const App = () => {
+                const handleSubmit = (event) => {
+                    event.preventDefault();
+                    
+                    alert("Choosed car : " + event.target.elements.cars.value);
+                }
+
+                return (
+                    <>
+                        <form onSubmit={handleSubmit}>
+                            <label htmlFor="cars">Choose a car : </label>
+                            <select id="cars" name="cars">
+                                <option defaultValue="volvo">Volvo</option>
+                                <option defaultValue="saab">Saab</option>
+                                <option defaultValue="fiat">Fiat</option>
+                                <option defaultValue="audi">Audi</option>
+                            </select>
+                            <input type="submit" />
+                        </form> 
+                    </>
+                );
+            };
+
+            ReactDOM.render(<App />, document.getElementById("root"));
+        </script>
+
+
+    </body>
+</html>
+
+
