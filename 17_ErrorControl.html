@@ -38,8 +38,7 @@
             }
 
             const Fallback = ({error}) => {
-                alert(error.message);
-                return <p>THERE IS SOME ERROR...</p>;
+                return <p>{error.message}</p>;
             }
 
             const App = () => {
