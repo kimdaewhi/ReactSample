@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root">
+            <!-- React CDN import -->
+            <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+            <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+            <!-- Babel CDN import -->
+            <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+            <script type="text/babel">
+                const rootElement = document.getElementById("root");
+
+                const todos = [
+                    [   {id: 1, value: "wash dishes"},
+                        {id: 2, value: "clean the bed"},
+                        {id: 3, value: "jogging outside"},
+                        {id: 4, value: "go working"},
+                    ],
+
+                    [   {id: 4, value: "go working"},
+                        {id: 1, value: "wash dishes"},
+                        {id: 2, value: "clean the bed"},
+                        {id: 3, value: "jogging outside"},
+                    ],
+
+                    [   {id: 3, value: "jogging outside"},
+                        {id: 4, value: "go working"},
+                        {id: 1, value: "wash dishes"},
+                        {id: 2, value: "clean the bed"},
+                    ],
+
+                    [   {id: 2, value: "clean the bed"},
+                        {id: 3, value: "jogging outside"},
+                        {id: 4, value: "go working"},
+                        {id: 1, value: "wash dishes"},
+                    ],
+                ];
+
+                /* 🟥🟥🟥 App Component(Main) 🟥🟥🟥 */
+                const App = () => {
+                    const [items, setItems] = React.useState(todos[0]);
+
+                    React.useEffect(() => {
+                        const interval = setInterval(() => {
+                            const random = Math.floor(Math.random() * 3);
+                            setItems(todos[random])
+                        }, 1000);
+
+                        return () => {
+                            clearInterval(interval);
+                        };
+                    }, []);
+
+                    const handleDoneClick = (todo) => {
+                        setItems(items => items.filter((item) => item != todo));
+                    };
+
+                    const handleRestoreClick = () => {
+                        setItems((items) => [
+                            ...items, 
+                            todos.find(item => !items.includes(item))
+                        ]);
+                    };
+                    
+                    return (
+                        <>
+                            {items.map((todo, index) => (
+                                // 배열의 Key를 이용하여 Component를 재사용할 수 있다. 
+                                // 👈 Key를 제대로 줘야 컴포넌트를 재사용할 수 있음.
+                                // <div key={todo.id}>
+                                <div key={todo.value}>          {/* Key에 index를 사용할 때와 id를 사용할 때가 동작이 다름(tab으로 확인해보자). index는 가변적임(?)*/}
+                                    <button onClick={() => handleDoneClick(todo)}>{todo.value}</button>&nbsp;&nbsp;&nbsp;
+                                </div>
+                            ))}
+                            <br/>
+                            <button onClick={handleRestoreClick}>Restore</button>
+                        </>
+                    );
+                };
+
+                ReactDOM.render(<App/>, rootElement)
+            </script>
+        </div>
+    </body>
+</html>
