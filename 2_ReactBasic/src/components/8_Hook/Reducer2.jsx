@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useRef, useState } from 'react'
 import './Reducer2.css'
     
 export default function Reducer2() {
@@ -18,6 +18,7 @@ export default function Reducer2() {
                 return {
                     ...state,
                     todos: [...state.todos, {text: action.payload, completed: false}],
+                    newTodo: '',        // input Text를 clear하기 위해서 useState로 별도외 상태 관리가 필요없이 여기서 해결이 가능함!!!
                 }
             
             // todo 완료목록 체크(checkBox)
@@ -48,6 +49,17 @@ export default function Reducer2() {
         }
     };
 
+    const [isChecked, setIsChecked] = useState(false);
+    const [taskContent, setTaskContent] = useState("");
+    const handleRowClick = (index) => {
+        const selectedTodo = state.todos[index];
+
+        setIsChecked(selectedTodo.completed);
+        setTaskContent(selectedTodo.text);
+
+        console.log("isChecked.current : " + isChecked.current + ", taskContent.current : " + taskContent.current);
+    };
+
 
     return (
         <div>
@@ -76,14 +88,14 @@ export default function Reducer2() {
                     <thead>
                         <tr>
                             <th style={{width: "50px"}}>Chk</th>
-                            <th style={{width: "250px"}}>Task</th>
+                            <th style={{width: "300px"}}>Task</th>
                             <th style={{width: "100px"}}>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         { state.todos.map((todo, index) => (
-                            <tr className={index} key={index}>
+                            <tr key={index} onClick={() => handleRowClick(index)}>
                                 <td>
                                     <input 
                                         type="checkbox"
@@ -107,6 +119,11 @@ export default function Reducer2() {
                 </table>
             </div>
 
+            <div>
+                <h3>Task 세부사항</h3>
+                <p><b>작업 내용 : </b>{taskContent}</p>
+                <p><b>완료 여부 : </b>{isChecked === false ? "미완료" : "완료"}</p>
+            </div>
 
         </div>
     )
