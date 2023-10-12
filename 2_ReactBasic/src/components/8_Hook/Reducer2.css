@@ -1,0 +1,26 @@
+.table-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 5px;
+    width: 400px;
+}
+
+th {
+    border: 1px solid black; /* 테두리 선 스타일 및 색상 설정 */
+    padding: 8px; /* 셀 내부 패딩 설정 (선택사항) */
+}
+
+td {
+    border: 1px solid black; /* 테두리 선 스타일 및 색상 설정 */
+    padding: 8px; /* 셀 내부 패딩 설정 (선택사항) */
+}
+
+thead {
+    text-align: center;
+}

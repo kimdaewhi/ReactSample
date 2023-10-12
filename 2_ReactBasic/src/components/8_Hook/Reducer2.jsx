@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react'
+import './Reducer2.css'
     
 export default function Reducer2() {
 
@@ -68,26 +69,45 @@ export default function Reducer2() {
                 }}>
                 Add</button>
             
-            <h3 style={{textAlign: "left", marginLeft: "5px", color: "gray"}}>Todo List</h3>
+            <h3 style={{marginLeft: "5px", color: "gray"}}>Todo List</h3>
+            
+            <div className="table-center">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style={{width: "50px"}}>Chk</th>
+                            <th style={{width: "250px"}}>Task</th>
+                            <th style={{width: "100px"}}>Action</th>
+                        </tr>
+                    </thead>
 
-            <ul style={{textAlign: "left"}}>
-                { state.todos.map((todo, index) => (
-                    <li key={index} style={{margin: "3px"}}>
-                        <input 
-                            type="checkbox"
-                            style={{marginLeft: "5px"}}
-                            checked={todo.completed}
-                            onChange={() => dispatch({type: 'TOGGLE_TODO', payload: index})}
-                        />
-                        {todo.text}
-                        <button 
-                            style={{marginLeft: "20px"}}
-                            onClick={() => dispatch({type: 'DELETE_TODO', payload: index})}>DELETE
-                        </button>
-                    </li>
-                ))
-                }
-            </ul>
+                    <tbody>
+                        { state.todos.map((todo, index) => (
+                            <tr className={index} key={index}>
+                                <td>
+                                    <input 
+                                        type="checkbox"
+                                        style={{marginLeft: "5px"}}
+                                        checked={todo.completed}
+                                        onChange={() => dispatch({type: 'TOGGLE_TODO', payload: index})}
+                                    />
+                                </td>
+                                <td style={{textAlign: "left"}}>
+                                    {todo.text}
+                                </td>
+                                <td>
+                                    <button 
+                                        style={{alignItems: "center"}}
+                                        onClick={() => dispatch({type: 'DELETE_TODO', payload: index})}>DELETE
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+
         </div>
     )
 }
