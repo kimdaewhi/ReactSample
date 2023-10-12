@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root">
+            <!-- React CDN import -->
+            <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+            <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+            <!-- Babel CDN import -->
+            <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+            <script type="text/babel">
+                const rootElement = document.getElementById("root");
+
+                /* 🟥🟥🟥 App Component(Main) 🟥🟥🟥 */
+                const App = () => {
+                    // ⭐ lifting 및 drilling...??
+                    /* ID 및 Password */
+                    const refId = React.useRef();
+                    const refPw = React.useRef();
+
+                    const [inputFlagID, setInputFlagID] = React.useState();
+                    const [inputFlagPW, setInputFlagPW] = React.useState();
+
+                    const handleIDChange = (event) => {
+                        if(event.target.value == "") {
+                            setInputFlagID(true);
+                        }
+                        else {
+                            setInputFlagID(false);
+                        }
+                        console.log("af inputFlagID : " + inputFlagID);
+                    }
+
+                    const handlePWChange = (event) => {
+                        if(event.target.value == "") {
+                            setInputFlagPW(true);
+                        }
+                        else {
+                            setInputFlagPW(false);
+                        }
+                        console.log("af inputFlagPW : " + inputFlagPW);
+                    }
+
+                    const handleClick = () => {
+                        alert("ID : " + refId.current.value + ", PW : " + refPw.current.value);
+                    }
+
+                    return (
+                        <>
+                            <label>ID : </label>
+                            <input id="login-Id" type="text" onChange={handleIDChange} ref={refId}/>
+                            <br/>
+                            <label>PW : </label>
+                            <input id="login-pw" type="password" onChange={handlePWChange} ref={refPw}/>
+                            <br/>
+                            <button 
+                                id="login-button" 
+                                disabled={!((inputFlagID == false) && (inputFlagPW == false))}
+                                onClick={handleClick}>Login</button>
+                        </>
+                    );
+                };
+
+                ReactDOM.render(<App/>, rootElement)
+            </script>
+        </div>
+    </body>
+</html>

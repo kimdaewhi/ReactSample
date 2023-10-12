@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>      
+
+        <!-- React CDN import -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- Babel CDN import -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        <style>
+            .button {
+              background-color: #4CAF50; /* Green */
+              border: none;
+              color: white;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 4px 2px;
+              cursor: pointer;
+            }
+            .blue {background-color: #008CBA;} /* Blue */
+            .red {background-color: #f44336;} /* Red */ 
+            .gray {background-color: #e7e7e7; color: black;} /* Gray */ 
+            .black {background-color: #555555;} /* Black */
+            </style>
+
+
+        <script type="text/babel">
+            function Button({ className = "", color, style, ...rest }) {
+                return (
+                <button className={`button${className} ${color}`}                                   // 후순위
+                style = {{fontWeight: "bold"
+                        , fontFamily: "나눔명조"
+                        , backgroundColor: {color}
+                        , borderRadius: 8
+                        , ...style }}     // 우선순위
+                {...rest} 
+                />);
+            }
+
+            const element = (
+                <>
+                    {/* 외부 중괄호는 JSX 문법의 시작, 내부 중괄호는 Javascript 문법. */}
+                    {/* 그래서 주석을 사용할 때도 지금과 같이 중괄호로 열어줘야 함(JSX 주석) */}
+                    <Button style={{ borderRadius: "50%" }}>Green</Button>
+                    <Button color="blue" style={{fontSize: 20 }}>Blue</Button>
+                    <Button color="red">Red</Button>
+                    <Button color="gray">Gray</Button>
+                    <Button color="black">Black</Button>
+                </>
+            );
+
+            ReactDOM.render(element, document.getElementById("root"));
+        </script>
+
+
+    </body>
+</html>
+
+

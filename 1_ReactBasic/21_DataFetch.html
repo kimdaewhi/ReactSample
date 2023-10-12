@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root">
+            <!-- React CDN import -->
+            <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+            <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+            <!-- Babel CDN import -->
+            <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+            <script type="text/babel">
+                const rootElement = document.getElementById("root");
+
+                /* 🟥🟥🟥 App Component(Main) 🟥🟥🟥 */
+                const App = () => {
+                    const [data, setData] = React.useState(null);
+                    const [error, setError] = React.useState(null);
+
+                    React.useEffect(() =>{
+                        fetch("https://raw.githubusercontent.com/techoi/raw-data-api/main/simple-api.json")
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (myJson) {
+                            // console.log(JSON.stringify(myJson));
+                            setData(myJson);
+                        }).catch((error) => {
+                            // alert(error)
+                            setError(error.message);
+                        });
+                    }, [])
+
+                    if(error != null) {
+                        return <p>ERROR OCCURED!!</p>;
+                    }
+
+                    if(data == null) {
+                        return <p style={{color : "red"}}>Loading...</p>;
+                    }
+                    return (
+                        <>
+                            <div>
+                                <p>People</p>
+                                <br/>
+                                {/*<p>{JSON.stringify(data, null, 2)}</p>*/}
+                                {/* 왜 데이터 로드가 느린지 모르겠음... 서버 response 자체는 빠른 것 같은데... */}
+                                {data && data.data && data.data.people && data.data.people.map(person => 
+                                    <>
+                                        <span>Name : {person.name}</span>
+                                        <span> Age : {person.age}</span>
+                                        <br/>
+                                    </>)}
+                            </div>
+                        </>
+                    );
+                };
+
+                ReactDOM.render(<App/>, rootElement)
+            </script>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <!-- InLine 방식 Event -->
+        <!-- <button id="button" onclick="document.getElementById('demo').innerHTML=Date()">The time is?</button>
+        <p id="demo"></p> -->
+
+        <!-- script 방식 -->
+        <!-- <script>
+            const button = document.getElementById("button");
+            button.addEventListener("mouseout", () => alert("bye") );
+            // InLine 방식과 script 방식으로 등록한 Event 모두 동작함
+            button.addEventListener("click", () => alert("press") );
+
+            // React Event 네이밍은 Camel Case, js방식은 모두 소문자
+        </script> -->
+
+        <div id="root"></div>
+
+        <!-- React CDN import -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- Babel CDN import -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+        <script type="text/babel">
+            const rootElement = document.getElementById("root");
+
+            {/* 함수를 outLine으로 */}
+            const handleClick = () => {
+                alert("pressed");
+            }
+
+            const handleMouseOut = () => {
+                alert("bye");
+            }
+            
+
+            {/* 소문자 안먹음. 전부다 Camel Case로 처리 */}
+            const element = (
+                <button onClick={ handleClick } onMouseOut={ handleMouseOut } >Press</button>
+            )
+            ReactDOM.render(element, rootElement);
+
+            // 기존 방식의 구현(함수 내부에 직접 구현)
+            // const element2 = <button onClick={ () => alert("pressed btn2") } onMouseOut={ () => alert("bye btn2") } >Press22</button>
+            // ReactDOM.render(element2, rootElement);
+        </script>
+
+
+    </body>
+</html>
+
+

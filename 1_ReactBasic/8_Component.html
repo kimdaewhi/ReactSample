@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+
+        <!-- React CDN import -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- Babel CDN import -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+        <script type="text/babel">
+            const rootElement = document.getElementById("root");
+            
+            // React.usetState...?? : 상태값을 관리해주는 Hook
+            // Hook은 뭐지?
+            const App = () => {
+                // 배열 비구조화 할당(?)
+                const [keyword, setKeyword] = React.useState("");
+                const [result, setResult] = React.useState("");
+                const [typing, setTyping] = React.useState(false);
+
+                // 다음과 같은 방식도 됨. React.useState()에 대해서 자세히 알아보자
+                // const keywordState = React.useState("");
+                // const keyword = keywordState[0];
+                // const setKeyword = keywordState[1];
+
+                function handleInputChange(event) {
+                    setKeyword(event.target.value);
+                    setTyping(true);
+                }
+
+                function handleBtnClick() {
+                    setTyping(false);
+                    setResult(`We find results of ${keyword}`);
+                }
+
+                return (
+                    <>
+                        <input onChange={ handleInputChange } />
+                        <button onClick={ handleBtnClick }>search</button>
+                        <p>{ typing ? `Looking for ${ keyword }...` : result }</p>
+                    </>
+                );
+            };
+
+            ReactDOM.render(<App />, rootElement);
+        </script>
+
+
+    </body>
+</html>
+
+

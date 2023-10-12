@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+
+        <!-- React CDN import -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- Babel CDN import -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+        <script type="text/babel">
+            const rootElement = document.getElementById("root");
+            // 전역변수 선언(객체 리터럴 사용하여 객체를 정의)
+            const state = { keyworkd: "", typing: false, result: ""};
+
+            
+            const App = () => {
+                function handleInputChange() {
+                    // // event.target : 이벤트가 발생한 element, target.value :  해당 element의 값
+                    // console.log(event.target.value)
+                    setState({ typing: true, 
+                               keyword: event.target.value 
+                    });
+                }
+
+                function handleBtnClick() {
+                    setState({ typing: false,
+                               result: `We find results of ${state.keyword}`
+                    });
+                }
+
+                // Object.assign 찾아보기
+                function setState(newState) {
+                    Object.assign(state, newState);
+                    render();
+                }
+
+                function render() {
+                    ReactDOM.render(<App />, rootElement);
+                }
+
+                return (
+                    <>
+                        <input onChange={ handleInputChange } />
+                        <button onClick={ handleBtnClick }>search</button>
+                        <p>{state.typing ? `Looking for ${ state.keyword }...` : state.result}</p>
+                    </>
+                )
+            }
+
+            ReactDOM.render(<App />, rootElement);
+        </script>
+
+
+    </body>
+</html>
+
+
