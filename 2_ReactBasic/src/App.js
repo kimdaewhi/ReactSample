@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import HookExample5 from './components/8_Hook/HookExample5'
+import CallbackExam3 from './components/8_Hook/CallbackExam3'
 
 function App() {
   return (
     <div className="App">
-      <HookExample5/>
+
+      <CallbackExam3/>
+
       {/* 👉 강의 목차 순서대로 정리한 내용
       <Composition/>
       <Extraction/>
@@ -25,6 +27,10 @@ function App() {
       <HookExample3/>
       <HookExample4/>
       <HookExample5/>
+      <HookExample6/>
+      <CallbackExam1/>
+      <CallbackExam2/>
+      <CallbackExam3/>
 
       <UseReducerExam/>
       <Reducer/>
