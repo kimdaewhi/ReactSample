@@ -1,12 +1,11 @@
+import React from 'react';
 import './App.css';
-import HookExample4 from './components/8_Hook/HookExample4'
-import Reducer from './components/8_Hook/Reducer'
-import Reducer2 from './components/8_Hook/Reducer2'
+import HookExample5 from './components/8_Hook/HookExample5'
 
 function App() {
   return (
     <div className="App">
-      <Reducer2/>
+      <HookExample5/>
       {/* 👉 강의 목차 순서대로 정리한 내용
       <Composition/>
       <Extraction/>
@@ -25,9 +24,11 @@ function App() {
       <HookExample2/>
       <HookExample3/>
       <HookExample4/>
+      <HookExample5/>
 
       <UseReducerExam/>
       <Reducer/>
+      <Reducer2/>
 
       <WelcomeDialog/>
       <Dialog/>
@@ -45,5 +46,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
