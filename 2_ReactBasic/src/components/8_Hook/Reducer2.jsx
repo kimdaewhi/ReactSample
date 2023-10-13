@@ -29,6 +29,7 @@ export default function Reducer2() {
                         index === action.payload ? { ...todo, completed: !todo.completed } : todo
                     ),
                 };
+
             
             // todo 업데이트(input)
             case 'UPDATE_NEW_TODO':
