@@ -43,9 +43,15 @@ function Header() {
     // 1. input으로 입력된 사용자 ID를 useState를 통해서 관리
     // 2. Login / Logout 버튼을 클릭했을 때 useContext를 이용한 공유 자원(?)을 사용함.
     const [loginID, setLoginID] = useState("");
+
     const handleInputIDChange = (event) => {
         setLoginID(event.target.value);
     };
+
+    const handleLogin = () => {
+        auth.login(loginID);
+        setLoginID("");
+    }
 
     return (
         <header>
@@ -53,9 +59,10 @@ function Header() {
         <input
             type="text"
             style={{marginRight: "5px"}}
-            onChange={handleInputIDChange}/>
-            { auth.user ? ( <button onClick={() => auth.logout()}>Logout</button>
-                ) : ( <button onClick={() => auth.login(loginID)}>Login</button>
+            onChange={handleInputIDChange}
+            value={loginID}/>
+            { auth.user ? 
+                ( <button onClick={() => auth.logout()}>Logout</button>) : ( <button onClick={handleLogin}>Login</button>
             )}
         </header>
     );
