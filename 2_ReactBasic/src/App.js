@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css';
-import CallbackExam3 from './components/8_Hook/CallbackExam3'
+import WelcomeDialog from './components/9_Composition/WelcomeDialog'
+import Dialog from './components/9_Composition/Dialog'
+import ThankyouDialog from './components/9_Composition/ThankyouDialog'
 
 function App() {
   return (
     <div className="App">
-
-      <CallbackExam3/>
+      <WelcomeDialog/>
+      <Dialog/>
+      <ThankyouDialog/>
 
       {/* 👉 강의 목차 순서대로 정리한 내용
       <Composition/>
