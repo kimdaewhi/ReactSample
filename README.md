@@ -13,10 +13,10 @@
 9. 컴포넌트 스타일링
 
 **2_ReactBasic**
-1. Node.js를 이용한 react 개발 환경 세팅
-  * Node.js 설치
-  * react 앱 생성하기 `npm create-react-app [App 이름]` 
+1. **Node.js를 이용한 react 개발 환경 세팅**
+  * **Node.js 설치**
+  * **react 앱 생성하기 `npm create-react-app [App 이름]`**
     - App 이름 Naming Rules : 
       - 첫글자 대문자 x
       - 공백/특수문자 x
-  * 필요한 경우 개발 도구 설치(eslint, prettier). 필수는 아니지만 권장 사항임.
+  * **필요한 경우 개발 도구 설치(eslint, prettier). 필수는 아니지만 권장 사항임.**
