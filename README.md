@@ -74,4 +74,46 @@ javascript 코드에서 발견되는 문제를 식별하기 위한 정적 코드
   ```
 
   #### prettier 설치 및 세팅
-  - 사용자가 지정한 옵션에 따라 코드를 Formatting 해주는 <b>_Code Formatter_</b>
+- 사용자가 지정한 옵션에 따라 코드를 Formatting 해주는 <b>_Code Formatter_</b>
+- 터미널에 prettier 패키지 설치 ``npm install prettier --save-dev``
+- Prettier 설정파일 생성(.prettierrc.json)
+
+```json
+{
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "all"
+}
+```
+- ESLint / Prettier 전체 사용하기 위한 setitng.json 코드
+```json
+{
+  // ESLint와 Prettier를 함께 사용하도록 설정합니다.
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "eslint.enable": true,
+  "eslint.options": {
+    "configFile": ".eslintrc.json"
+  },
+  "eslint.run": "onSave",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+
+  // Prettier 설정을 추가합니다.
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "prettier.trailingComma": "es5",
+
+  // 파일 저장 시마다 ESLint와 Prettier를 실행합니다.
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
+```
