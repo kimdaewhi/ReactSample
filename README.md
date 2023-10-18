@@ -35,5 +35,20 @@
 ### 🙏🏻 필수 사항은 아니지만 사용이 매우 권장됨!!
 
 #### eslint 설치 및 사용법
-<b><u><span style="color:red">javascript 코드에서 발견되는 컴파일 에러 등을 식별하기 위한 정적 코드 분석 도구.</span></u></b>
-<>
+- 터미널에 eslint 패키지 설치 ``npm install eslint --save-dev``
+- ESLint 설정 파일 생성(.eslintrc.json) 및 내용 입력
+  ``
+  {
+		"env": {
+		  "browser": true,
+		  "es6": true
+		},
+		"extends": [
+		  "eslint:recommended"
+		],
+		"parserOptions": {
+		  "ecmaVersion": 2018
+		},
+		"rules": {}
+	}
+  ``
