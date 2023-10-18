@@ -12,6 +12,8 @@
 8. **Hook의 호출 시점 파악하기**
 9. **컴포넌트 스타일링**
 
+-----------------------
+
 ### 2_ReactBasic
 1. **Node.js를 이용한 react 개발 환경 세팅**
   * **Node.js 설치**
@@ -30,11 +32,12 @@
 9. **HOC 및 여러가지 Hook 사용하기(useRef, useContext, useReducer, useMemo 등)**
 10. **메모이제이션(Memoization) 개념 및 useCallback 함수**
 
-
+-----------------------
 
 ### 🙏🏻 필수 사항은 아니지만 사용이 매우 권장됨!!
 
-#### eslint 설치 및 사용법
+#### eslint 설치 및 세팅
+<span style="color: orange">javascript 코드에서 발견되는 문제를 식별하기 위한 정적 코드 분석 도구.</span>
 - 터미널에 eslint 패키지 설치 ``npm install eslint --save-dev``
 - ESLint 설정 파일 생성(.eslintrc.json) 및 내용 입력
 
@@ -53,3 +56,21 @@
 		"rules": {}
 	}
   ```
+- settings.json 파일 생성 및 스크립트 내용 입력
+  ```json
+  {
+      "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+      },
+      "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "vue",
+          "html",
+          "typescript",
+          "typescriptreact"
+      ]
+  }
+  ```
+
+  #### prettier 설치 및 세팅
