@@ -15,7 +15,7 @@
 ### 2_ReactBasic
 1. **Node.js를 이용한 react 개발 환경 세팅**
   * **Node.js 설치**
-  * **react 앱 생성하기 `<span style="color: red">npm create-react-app [App 이름]</span>`**
+  * **react 앱 생성하기 `npm create-react-app [App 이름]`**
     - App 이름 Naming Rules : 
       - 첫글자 대문자 x
       - 공백/특수문자 x
