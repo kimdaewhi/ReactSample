@@ -38,7 +38,7 @@
 - 터미널에 eslint 패키지 설치 ``npm install eslint --save-dev``
 - ESLint 설정 파일 생성(.eslintrc.json) 및 내용 입력
 
-  ``
+  ```json
   {
 		"env": {
 		  "browser": true,
@@ -52,4 +52,4 @@
 		},
 		"rules": {}
 	}
-  ``
+  ```
