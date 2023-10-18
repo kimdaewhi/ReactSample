@@ -74,4 +74,4 @@ javascript 코드에서 발견되는 문제를 식별하기 위한 정적 코드
   ```
 
   #### prettier 설치 및 세팅
-  - 사용자가 지정한 옵션에 따라 코드를 Formatting 해주는 <b><u>Code Formatter</u></b>
+  - 사용자가 지정한 옵션에 따라 코드를 Formatting 해주는 <b>_Code Formatter_</b>
