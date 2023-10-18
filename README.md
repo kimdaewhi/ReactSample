@@ -1,6 +1,6 @@
 # React 기초 내용 학습
 
-**1_ReactBasic**
+##### 1_ReactBasic
 1. react-dom 이란?
 2. 바닐라 JS와 React 컴포넌트 렌더링 차이 확인
 3. babel 컴파일러 사용법
@@ -12,7 +12,7 @@
 8. Hook의 호출 시점 파악하기
 9. 컴포넌트 스타일링
 
-**2_ReactBasic**
+##### 2_ReactBasic
 1. **Node.js를 이용한 react 개발 환경 세팅**
   * **Node.js 설치**
   * **react 앱 생성하기 `npm create-react-app [App 이름]`**
